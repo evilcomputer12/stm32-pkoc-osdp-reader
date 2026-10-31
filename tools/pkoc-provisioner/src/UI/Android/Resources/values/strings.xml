@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Cred-Bench PKOC</string>
+  <string name="intro">Analyze a JavaCard or install the PKOC applet over NFC. Choose an action, then hold the card flat against the back of the phone and keep it still until finished.</string>
+  <string name="key_header">GlobalPlatform key</string>
+  <string name="key_default">Default GP key (404142…4F)</string>
+  <string name="key_single">Custom key (one key for ENC / MAC / DEK)</string>
+  <string name="key_separate">Separate ENC / MAC / DEK (KEK) keys</string>
+  <string name="key_enc_hint">ENC key — 32 hex characters</string>
+  <string name="key_single_hint">GP key — 32 hex characters</string>
+  <string name="key_mac_hint">MAC key — 32 hex characters</string>
+  <string name="key_dek_hint">DEK / KEK key — 32 hex characters</string>
+  <string name="key_note">Use the GlobalPlatform card-manager key from the card supplier. This is not the PKOC credential key. Keys are not saved.</string>
+  <string name="replace_existing">Replace existing PKOC applet</string>
+  <string name="replace_warning">Deletes applet A000000898000001 and package A000000898000002 before installing. The card\'s existing PKOC key pair is destroyed permanently and its credential number will change.</string>
+  <string name="replace_confirm_title">Replace PKOC applet?</string>
+  <string name="replace_confirm_text">The existing PKOC applet and package will be deleted and reinstalled. The current PKOC key pair cannot be recovered and the card\'s credential number will change.</string>
+  <string name="replace_confirm_yes">Delete and reinstall</string>
+  <string name="cancel">Cancel</string>
+  <string name="analyze">Analyze card</string>
+  <string name="install">Install PKOC applet</string>
+  <string name="status_idle">Hold a card to the phone to scan it, or choose an action.</string>
+  <string name="status_waiting_analyze">Analyze: hold the card to the phone…</string>
+  <string name="status_waiting_install">Install: hold the card flat against the phone and keep it still…</string>
+  <string name="nfc_missing">This phone has no NFC.</string>
+  <string name="nfc_disabled">NFC is turned off. Enable it in Settings.</string>
+</resources>

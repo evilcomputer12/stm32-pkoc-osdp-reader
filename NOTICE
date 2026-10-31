@@ -16,6 +16,14 @@ lib/PN532 contains modified files from Seeed Studio PN532, with original
 Adafruit and Seeed copyright notices and its BSD 3-Clause license retained
 in lib/PN532/LICENSE.md. Changes are described in docs/dependencies.md.
 
+tools/pkoc-provisioner is derived from Cred-Bench
+(https://github.com/Z-bit-Systems-LLC/Cred-Bench), Copyright Z-bit Systems,
+LLC, and remains under the Apache License 2.0, whose text is in
+tools/pkoc-provisioner/LICENSE. Its Core library was modified and an Android
+app was added; tools/pkoc-provisioner/README.md lists the changed files. It
+includes the prebuilt PKOC applet src/Applet/build/pkoc.cap, built from the
+applet source next to it as in upstream Cred-Bench. The CAP contains no keys.
+
 Other dependencies are fetched at the revisions in dependencies.lock.json
 or the versions in platformio.ini. Their licenses remain in their sources;
 docs/dependencies.md identifies the relevant projects and license paths.

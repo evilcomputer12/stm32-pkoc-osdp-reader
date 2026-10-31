@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- MainWindow -->
+  <data name="Reader_Header" xml:space="preserve">
+    <value>Reader</value>
+  </data>
+  <data name="Reader_RefreshTooltip" xml:space="preserve">
+    <value>Refresh readers</value>
+  </data>
+  <data name="Reader_ResetTooltip" xml:space="preserve">
+    <value>Reset reader (use when reader stops responding)</value>
+  </data>
+  <data name="Card_PresentToReader" xml:space="preserve">
+    <value>Present Card to Reader</value>
+  </data>
+  <data name="Card_ScanButton" xml:space="preserve">
+    <value>Scan Card</value>
+  </data>
+  <data name="Card_Scanning" xml:space="preserve">
+    <value>Scanning Card...</value>
+  </data>
+  <data name="Card_DetectedTechnologies" xml:space="preserve">
+    <value>Detected Technologies</value>
+  </data>
+  <data name="Card_Details" xml:space="preserve">
+    <value>Card Details</value>
+  </data>
+  <data name="Card_NoCardScanned" xml:space="preserve">
+    <value>No card scanned yet</value>
+  </data>
+
+  <!-- Tab Headers -->
+  <data name="Tab_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Tab_PIV" xml:space="preserve">
+    <value>PIV</value>
+  </data>
+  <data name="Tab_DESFire" xml:space="preserve">
+    <value>DESFire</value>
+  </data>
+  <data name="Tab_ISO14443" xml:space="preserve">
+    <value>ISO14443</value>
+  </data>
+  <data name="Tab_PKOC" xml:space="preserve">
+    <value>PKOC</value>
+  </data>
+  <data name="Tab_LEAF" xml:space="preserve">
+    <value>LEAF</value>
+  </data>
+
+  <!-- General Details -->
+  <data name="General_Reader" xml:space="preserve">
+    <value>Reader:</value>
+  </data>
+  <data name="General_Protocol" xml:space="preserve">
+    <value>Protocol:</value>
+  </data>
+  <data name="General_ATR" xml:space="preserve">
+    <value>ATR</value>
+  </data>
+
+  <!-- PIV Details -->
+  <data name="PIV_Status" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="PIV_FASCN" xml:space="preserve">
+    <value>FASC-N</value>
+  </data>
+  <data name="PIV_AgencyCode" xml:space="preserve">
+    <value>Agency Code:</value>
+  </data>
+  <data name="PIV_SystemCode" xml:space="preserve">
+    <value>System Code:</value>
+  </data>
+  <data name="PIV_CredentialNumber" xml:space="preserve">
+    <value>Credential #:</value>
+  </data>
+  <data name="PIV_CredentialSeries" xml:space="preserve">
+    <value>Credential Series:</value>
+  </data>
+  <data name="PIV_ICI" xml:space="preserve">
+    <value>ICI:</value>
+  </data>
+  <data name="PIV_PersonIdentifier" xml:space="preserve">
+    <value>Person Identifier:</value>
+  </data>
+  <data name="PIV_OrgCategory" xml:space="preserve">
+    <value>Org. Category:</value>
+  </data>
+  <data name="PIV_OrgIdentifier" xml:space="preserve">
+    <value>Org. Identifier:</value>
+  </data>
+  <data name="PIV_POA" xml:space="preserve">
+    <value>POA:</value>
+  </data>
+  <data name="PIV_Hex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+
+  <!-- DESFire Details -->
+  <data name="DESFire_CardType" xml:space="preserve">
+    <value>Card Type:</value>
+  </data>
+  <data name="DESFire_Version" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="DESFire_Storage" xml:space="preserve">
+    <value>Storage:</value>
+  </data>
+
+  <!-- ISO14443 Details -->
+  <data name="ISO14443_Manufacturer" xml:space="preserve">
+    <value>Manufacturer:</value>
+  </data>
+  <data name="ISO14443_UIDLength" xml:space="preserve">
+    <value>UID Length:</value>
+  </data>
+  <data name="ISO14443_UID" xml:space="preserve">
+    <value>UID:</value>
+  </data>
+  <data name="ISO14443_CSN" xml:space="preserve">
+    <value>CSN</value>
+  </data>
+  <data name="ISO14443_Hex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+
+  <!-- PKOC Details -->
+  <data name="PKOC_ProtocolVersion" xml:space="preserve">
+    <value>Protocol Version:</value>
+  </data>
+  <data name="PKOC_SignatureValidation" xml:space="preserve">
+    <value>Signature:</value>
+  </data>
+  <data name="PKOC_SignatureValid" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="PKOC_SignatureInvalid" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="PKOC_SignatureNotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="PKOC_Credential" xml:space="preserve">
+    <value>Credential</value>
+  </data>
+  <data name="PKOC_256BitOption" xml:space="preserve">
+    <value>256-bit (Full X Component)</value>
+  </data>
+  <data name="PKOC_75BitOption" xml:space="preserve">
+    <value>75-bit (Recommended for Legacy)</value>
+  </data>
+  <data name="PKOC_64BitOption" xml:space="preserve">
+    <value>64-bit</value>
+  </data>
+  <data name="PKOC_Hex" xml:space="preserve">
+    <value>Hex</value>
+  </data>
+  <data name="PKOC_WiegandBits256" xml:space="preserve">
+    <value>Wiegand Bits (256)</value>
+  </data>
+  <data name="PKOC_WiegandBits75" xml:space="preserve">
+    <value>Wiegand Bits (75)</value>
+  </data>
+  <data name="PKOC_WiegandBits64" xml:space="preserve">
+    <value>Wiegand Bits (64)</value>
+  </data>
+
+  <!-- PKOC Card Info -->
+  <data name="PKOC_CardInfo_Header" xml:space="preserve">
+    <value>Card Content</value>
+  </data>
+  <data name="PKOC_CardInfo_QueryButton" xml:space="preserve">
+    <value>Query Card</value>
+  </data>
+  <data name="PKOC_CardInfo_FreeMemory" xml:space="preserve">
+    <value>Free Memory:</value>
+  </data>
+  <data name="PKOC_CardInfo_PkocInstalled" xml:space="preserve">
+    <value>PKOC applet is installed</value>
+  </data>
+  <data name="PKOC_CardInfo_PkocNotInstalled" xml:space="preserve">
+    <value>PKOC applet is not installed</value>
+  </data>
+  <data name="PKOC_CardInfo_Applets" xml:space="preserve">
+    <value>Installed Applets</value>
+  </data>
+  <data name="PKOC_CardInfo_Packages" xml:space="preserve">
+    <value>Loaded Packages</value>
+  </data>
+  <data name="PKOC_CardInfo_ShowDetails" xml:space="preserve">
+    <value>Show Details</value>
+  </data>
+  <data name="PKOC_CardInfo_HideDetails" xml:space="preserve">
+    <value>Hide Details</value>
+  </data>
+  <data name="PKOC_CardInfo_RefreshButton" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+
+  <!-- PKOC Programming -->
+  <data name="PKOC_Programming_Header" xml:space="preserve">
+    <value>Card Programming</value>
+  </data>
+  <data name="PKOC_Programming_DefaultKey" xml:space="preserve">
+    <value>Default GP Key (404142...4F)</value>
+  </data>
+  <data name="PKOC_Programming_CustomKey" xml:space="preserve">
+    <value>Custom GP Key</value>
+  </data>
+  <data name="PKOC_Programming_ProgramButton" xml:space="preserve">
+    <value>Program Card</value>
+  </data>
+  <data name="PKOC_Programming_SecureChannel" xml:space="preserve">
+    <value>Establishing secure channel...</value>
+  </data>
+  <data name="PKOC_Programming_Loading" xml:space="preserve">
+    <value>Loading applet... ({0}/{1})</value>
+  </data>
+  <data name="PKOC_Programming_Complete" xml:space="preserve">
+    <value>Programming complete!</value>
+  </data>
+  <data name="PKOC_Programming_ScanToView" xml:space="preserve">
+    <value>Programming complete! Scan card to view credential.</value>
+  </data>
+  <data name="PKOC_Programming_Failed" xml:space="preserve">
+    <value>Programming failed</value>
+  </data>
+  <data name="PKOC_Programming_Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="PKOC_Programming_CustomKeyHint" xml:space="preserve">
+    <value>16-byte GlobalPlatform ISD key from the card supplier. This is not the PKOC credential key. A wrong key is rejected before EXTERNAL AUTHENTICATE is sent.</value>
+  </data>
+  <data name="PKOC_Engine_Header" xml:space="preserve">
+    <value>Engine</value>
+  </data>
+  <data name="PKOC_Engine_BuiltIn" xml:space="preserve">
+    <value>Built-in (Cred-Bench)</value>
+  </data>
+  <data name="PKOC_Engine_Gp" xml:space="preserve">
+    <value>GlobalPlatformPro (gp.jar / gp.exe)</value>
+  </data>
+  <data name="PKOC_Engine_Browse" xml:space="preserve">
+    <value>Browse…</value>
+  </data>
+  <data name="PKOC_Engine_GpNote" xml:space="preserve">
+    <value>Runs gp through Java with the keys below and the embedded PKOC applet. Card Content uses gp --list; Program uses gp --install (plus --force when replacing). Keys are briefly visible on the gp command line.</value>
+  </data>
+  <data name="PKOC_Programming_SeparateKeys" xml:space="preserve">
+    <value>Separate ENC / MAC / DEK keys (first key above is ENC)</value>
+  </data>
+  <data name="PKOC_Programming_ReplaceExisting" xml:space="preserve">
+    <value>Replace existing PKOC applet</value>
+  </data>
+  <data name="PKOC_Programming_ReplaceWarning" xml:space="preserve">
+    <value>Warning: deletes applet A000000898000001 and package A000000898000002 before installing. The card's existing PKOC key pair is destroyed permanently and its credential number will change.</value>
+  </data>
+  <data name="PKOC_Programming_ReplaceConfirmTitle" xml:space="preserve">
+    <value>Replace PKOC applet?</value>
+  </data>
+  <data name="PKOC_Programming_ReplaceConfirmText" xml:space="preserve">
+    <value>The existing PKOC applet and package will be deleted and reinstalled. The current PKOC key pair cannot be recovered and the card's credential number will change.
+
+Continue?</value>
+  </data>
+  <data name="PKOC_Programming_ReplaceCancelled" xml:space="preserve">
+    <value>Replacement not confirmed — nothing was changed on the card.</value>
+  </data>
+
+  <!-- PKOC Unfused Candidate -->
+  <data name="PKOC_Candidate_Title" xml:space="preserve">
+    <value>PKOC candidate — applet not installed</value>
+  </data>
+  <data name="PKOC_Candidate_Body" xml:space="preserve">
+    <value>This ISO14443 card did not accept SELECT of the PKOC applet (A000000898000001). It may be an unfused JavaCard that can receive the PKOC applet, but this is not confirmed until GlobalPlatform authentication succeeds.</value>
+  </data>
+  <data name="PKOC_Candidate_InstallButton" xml:space="preserve">
+    <value>Install PKOC applet…</value>
+  </data>
+  <data name="PKOC_Candidate_NotConfirmed" xml:space="preserve">
+    <value>Not confirmed: GlobalPlatform authentication has not succeeded yet.</value>
+  </data>
+  <data name="PKOC_Candidate_GpAuthenticated" xml:space="preserve">
+    <value>GlobalPlatform authentication succeeded — the card accepts applet management.</value>
+  </data>
+
+  <!-- LEAF Details -->
+  <data name="LEAF_ApplicationType" xml:space="preserve">
+    <value>Application Type:</value>
+  </data>
+  <data name="LEAF_DetectedAIDs" xml:space="preserve">
+    <value>Detected AIDs:</value>
+  </data>
+
+  <!-- ViewModel Status Messages -->
+  <data name="Status_Ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="Status_FoundReaders" xml:space="preserve">
+    <value>Found {0} reader(s)</value>
+  </data>
+  <data name="Status_NoReadersFound" xml:space="preserve">
+    <value>No readers found</value>
+  </data>
+  <data name="Status_ScanningCard" xml:space="preserve">
+    <value>Scanning card...</value>
+  </data>
+  <data name="Status_TechUnknown" xml:space="preserve">
+    <value>Card detected but technology unknown</value>
+  </data>
+  <data name="Status_Detected" xml:space="preserve">
+    <value>Detected: {0}</value>
+  </data>
+  <data name="Status_ScanCancelled" xml:space="preserve">
+    <value>Scan cancelled</value>
+  </data>
+  <data name="Status_Error" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Status_CardInserted" xml:space="preserve">
+    <value>Card inserted - scanning...</value>
+  </data>
+  <data name="Status_CardRemoved" xml:space="preserve">
+    <value>Card removed</value>
+  </data>
+  <data name="Status_ResettingReader" xml:space="preserve">
+    <value>Resetting reader...</value>
+  </data>
+  <data name="Status_ReaderResetComplete" xml:space="preserve">
+    <value>Reader reset complete</value>
+  </data>
+</root>

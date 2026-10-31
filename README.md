@@ -15,7 +15,7 @@ Special thanks to **[Jonathan Horvath / bytedreamer](https://github.com/bytedrea
 | [AsymCred](https://github.com/Z-bit-Systems-LLC/AsymCred) | Embedded PKOC protocol and credential authentication flow |
 | [OSDP-Embedded](https://github.com/Z-bit-Systems-LLC/OSDP-Embedded) | OSDP peripheral device and Secure Channel |
 | [OSDP.Net](https://github.com/Z-bit-Systems-LLC/OSDP.Net) | Desktop controller, ACUConsole and interoperability tests |
-| [Cred-Bench](https://github.com/Z-bit-Systems-LLC/Cred-Bench) | Related desktop credential tooling/reference; not part of this MCU firmware |
+| [Cred-Bench](https://github.com/Z-bit-Systems-LLC/Cred-Bench) | Related desktop credential tooling/reference; not part of this MCU firmware. The Android card provisioner in `tools/pkoc-provisioner/` is derived from its Core library and PKOC applet |
 
 Thanks also to [Adafruit](https://github.com/adafruit/Adafruit-PN532), [STM32duino](https://github.com/stm32duino/Arduino_Core_STM32), [wolfSSL](https://github.com/wolfSSL/wolfssl), [Microchip](https://github.com/MicrochipTech/cryptoauthlib), [Seeed Studio](https://github.com/Seeed-Studio/PN532), [Elechouse](https://github.com/elechouse/PN532), and their contributors. This repository supplies the board integration, adapters, presentation handling, diagnostics and tests; it does not claim authorship of the upstream libraries or endorsement from their authors.
 
@@ -87,7 +87,7 @@ Bootstrap fetches exact dependency commits, prepares a local random bench Secure
 
 Each fresh checkout generates its own local key. Preserve the existing `config/` directory when resuming this bench. A controller and firmware built with different keys will not establish Secure Channel. The firmware contains the key in Flash, so prebuilt images and private configuration are deliberately excluded from Git.
 
-New cards and unconfigured secure elements need a separate provisioning workflow. This repository does not enroll cards, lock ATECC slots, write its configuration, or generate persistent device keys. Use the existing working credential for the documented reproduction steps.
+New cards and unconfigured secure elements need a separate provisioning workflow. A blank JavaCard needs the PKOC applet installed first; [`tools/pkoc-provisioner`](tools/pkoc-provisioner/README.md) is an Android NFC app that does this with the card supplier's GlobalPlatform key. The reader firmware does not enroll cards, lock ATECC slots, write its configuration, or generate persistent device keys. Use the existing working credential for the documented reproduction steps.
 
 ## Buzzer and LED tests
 
@@ -120,6 +120,7 @@ See [Verification and limits](docs/verification.md) for evidence, failed earlier
 | `include/presentation_guard.h` | Removal/reselection and duplicate suppression |
 | `src/feedback.cpp` / `include/feedback_state.h` | LED and buzzer outputs/timing |
 | `tools/interop/` | OSDP.Net automated controller checks |
+| `tools/pkoc-provisioner/` | Android NFC app that installs the PKOC applet on blank JavaCards (Apache-2.0, derived from Cred-Bench) |
 | `tests/` | Crypto, parser, presentation, feedback and Secure Channel tests |
 | `dependencies.lock.json` / `platformio.ini` | Pinned Git dependencies, platform and registry libraries |
 
@@ -127,4 +128,4 @@ See [Verification and limits](docs/verification.md) for evidence, failed earlier
 
 ## License
 
-Project-authored integration code and documentation are provided under **GPL-3.0-or-later**; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Third-party code keeps its own copyright and license. The vendored Seeed/Adafruit PN532 files retain their BSD notices; fetched dependencies have the terms listed in [Dependencies](docs/dependencies.md). No blanket license claim is made for third-party components or a distributed combined firmware image.
+Project-authored integration code and documentation are provided under **GPL-3.0-or-later**; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Third-party code keeps its own copyright and license. The vendored Seeed/Adafruit PN532 files retain their BSD notices; `tools/pkoc-provisioner` stays under Cred-Bench's Apache-2.0 license (see its [LICENSE](tools/pkoc-provisioner/LICENSE)); fetched dependencies have the terms listed in [Dependencies](docs/dependencies.md). No blanket license claim is made for third-party components or a distributed combined firmware image.
