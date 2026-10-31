@@ -1,0 +1,217 @@
+using System.Security.Cryptography;
+using CredBench.Core.Models;
+using CredBench.Core.Models.TechnologyDetails;
+
+namespace CredBench.Core.Services.CardDetectors;
+
+public class PKOCDetector : ICardDetector
+{
+    public CardTechnology Technology => CardTechnology.PKOC;
+
+    // PSIA PKOC AID: A000000898000001
+    private static readonly byte[] PkocAid = [0xA0, 0x00, 0x00, 0x08, 0x98, 0x00, 0x00, 0x01];
+
+    // SELECT command: 00 A4 04 00 08 A000000898000001 00
+    private static readonly byte[] SelectPkocCommand =
+    [
+        0x00, 0xA4, 0x04, 0x00, // CLA, INS, P1, P2
+        0x08,                   // Lc (AID length)
+        0xA0, 0x00, 0x00, 0x08, 0x98, 0x00, 0x00, 0x01, // AID
+        0x00                    // Le
+    ];
+
+    // TLV tags per PSIA PKOC 1.1 spec
+    private const byte TagProtocolVersion = 0x5C;
+    private const byte TagPublicKey = 0x5A;
+    private const byte TagSignature = 0x9E;
+
+    public const string PkocAidHex = "A000000898000001";
+
+    /// <summary>
+    /// Detects an installed PKOC applet. Strict: requires SELECT of the PKOC AID to return
+    /// 9000 with a protocol version TLV. When not detected, Details carries the reason
+    /// (status word or malformed response) so the caller can surface it as a diagnostic.
+    /// Transport exceptions propagate to <see cref="CardDetectionService"/>.
+    /// </summary>
+    public (bool Detected, string? Details, object? TypedDetails) Detect(ICardConnection connection)
+    {
+        // Step 1: SELECT PKOC applet
+        var response = connection.Transmit(SelectPkocCommand);
+
+        if (response.Length < 2)
+            return (false, $"SELECT {PkocAidHex}: malformed response ({response.Length} bytes)", null);
+
+        if (!IsSuccess(response))
+            return (false, DescribeSelectFailure(response[^2], response[^1]), null);
+
+        var data = response[..^2]; // Remove SW1/SW2
+
+        var protocolVersion = ParseProtocolVersion(data);
+        if (protocolVersion is null)
+            return (false,
+                $"SELECT {PkocAidHex} returned 9000 but no protocol version TLV (5C): " +
+                Convert.ToHexString(data), null);
+
+        var versionString = $"{protocolVersion[0]:X2}.{protocolVersion[1]:X2}";
+
+        // Step 2: AUTHENTICATE to retrieve public key and signature
+        var authResult = TryAuthenticate(connection, protocolVersion);
+
+        var details = new PKOCDetails
+        {
+            ProtocolVersion = versionString,
+            PublicKeyHex = authResult?.PublicKey != null
+                ? BitConverter.ToString(authResult.PublicKey).Replace("-", "")
+                : null,
+            SignatureValid = authResult?.SignatureValid,
+        };
+
+        return (true, $"PKOC v{versionString}", details);
+    }
+
+    private static string DescribeSelectFailure(byte sw1, byte sw2)
+    {
+        var reason = (sw1, sw2) switch
+        {
+            (0x6A, 0x82) => "applet not found — PKOC applet is not installed",
+            (0x69, 0x99) => "applet selection failed",
+            (0x69, 0x85) => "conditions of use not satisfied",
+            (0x6D, 0x00) or (0x6E, 0x00) => "SELECT not supported by this card",
+            _ => "unexpected status",
+        };
+        return $"SELECT {PkocAidHex} failed (SW={sw1:X2}{sw2:X2}): {reason}";
+    }
+
+    private record AuthenticateResult(byte[] PublicKey, bool? SignatureValid);
+
+    private static AuthenticateResult? TryAuthenticate(ICardConnection connection, byte[] protocolVersion)
+    {
+        try
+        {
+            // Build AUTHENTICATE command per PSIA PKOC 1.1 spec:
+            // CLA=80, INS=80, P1=00, P2=01, Lc=38
+            // Data: 4C 10 [16-byte Transaction ID] 5C 02 [Protocol Version] 4D 20 [32-byte Reader ID]
+            // Le=00
+
+            var transactionId = RandomNumberGenerator.GetBytes(16);
+            var readerIdentifier = new byte[32]; // zeros for identification-only mode
+
+            var commandData = new byte[56]; // 0x38
+            var pos = 0;
+
+            // Transaction ID TLV: 4C 10 [16 bytes]
+            commandData[pos++] = 0x4C;
+            commandData[pos++] = 0x10;
+            Array.Copy(transactionId, 0, commandData, pos, 16);
+            pos += 16;
+
+            // Protocol Version TLV: 5C 02 [2 bytes]
+            commandData[pos++] = 0x5C;
+            commandData[pos++] = 0x02;
+            commandData[pos++] = protocolVersion[0];
+            commandData[pos++] = protocolVersion[1];
+
+            // Reader Identifier TLV: 4D 20 [32 bytes]
+            commandData[pos++] = 0x4D;
+            commandData[pos++] = 0x20;
+            Array.Copy(readerIdentifier, 0, commandData, pos, 32);
+
+            // Build full APDU: 80 80 00 01 38 [data] 00
+            var command = new byte[5 + commandData.Length + 1];
+            command[0] = 0x80; // CLA
+            command[1] = 0x80; // INS (AUTHENTICATE)
+            command[2] = 0x00; // P1
+            command[3] = 0x01; // P2
+            command[4] = (byte)commandData.Length; // Lc
+            Array.Copy(commandData, 0, command, 5, commandData.Length);
+            command[^1] = 0x00; // Le
+
+            var response = connection.Transmit(command);
+
+            if (!IsSuccess(response))
+                return null;
+
+            var responseData = response[..^2];
+
+            // Parse TLV for public key (tag 0x5A, length 0x41 = 65 bytes)
+            var publicKey = ParseTlvValue(responseData, TagPublicKey);
+            if (publicKey is null)
+                return null;
+
+            // Parse TLV for signature (tag 0x9E, length 0x40 = 64 bytes raw R||S)
+            var signature = ParseTlvValue(responseData, TagSignature);
+
+            // Verify signature over transaction ID using the public key
+            bool? signatureValid = null;
+            if (signature is { Length: 64 } && publicKey.Length == 65)
+            {
+                signatureValid = VerifySignature(publicKey, transactionId, signature);
+            }
+
+            return new AuthenticateResult(publicKey, signatureValid);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static bool VerifySignature(byte[] publicKeyUncompressed, byte[] transactionId, byte[] rawSignature)
+    {
+        try
+        {
+            using var ecdsa = ECDsa.Create(new ECParameters
+            {
+                Curve = ECCurve.NamedCurves.nistP256,
+                Q = new ECPoint
+                {
+                    X = publicKeyUncompressed[1..33],
+                    Y = publicKeyUncompressed[33..65],
+                },
+            });
+
+            return ecdsa.VerifyData(transactionId, rawSignature, HashAlgorithmName.SHA256, DSASignatureFormat.IeeeP1363FixedFieldConcatenation);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static byte[]? ParseTlvValue(byte[] data, byte targetTag)
+    {
+        var index = 0;
+        while (index < data.Length - 2)
+        {
+            var tag = data[index++];
+            var length = data[index++];
+
+            if (index + length > data.Length)
+                break;
+
+            if (tag == targetTag)
+                return data[index..(index + length)];
+
+            index += length;
+        }
+
+        return null;
+    }
+
+    private static byte[]? ParseProtocolVersion(byte[] data)
+    {
+        var result = ParseTlvValue(data, TagProtocolVersion);
+        return result is { Length: >= 2 } ? result[..2] : null;
+    }
+
+    private static bool IsSuccess(byte[] response)
+    {
+        if (response.Length < 2)
+            return false;
+
+        var sw1 = response[^2];
+        var sw2 = response[^1];
+
+        return sw1 == 0x90 && sw2 == 0x00;
+    }
+}
