@@ -1,0 +1,22 @@
+#pragma once
+#define ATCA_HAL_I2C
+#define ATCA_ATECC608_SUPPORT
+#define ATCA_ATECC608A_SUPPORT
+#define ATCA_NO_HEAP
+#define ATCA_MAX_HAL_CACHE 1
+#define ATCA_CHECK_PARAMS_EN 1
+#define ATCA_POST_DELAY_MSEC 25
+#define ATCA_PREPROCESSOR_WARNING 0
+#define ATCACERT_COMPCERT_EN 0
+#define ATCACERT_FULLSTOREDCERT_EN 0
+#define ATCACERT_INTEGRATION_EN 0
+#define MAX_PACKET_SIZE 155U
+// These operations are deliberately unavailable in the reader build.
+#define ATCAB_WRITE_EN 0
+#define ATCAB_WRITE_ENC_EN 0
+#define ATCAB_LOCK_EN 0
+#define ATCAB_GENKEY_EN 0
+#define ATCAB_PRIVWRITE_EN 0
+#define ATCAB_UPDATEEXTRA_EN 0
+#define ATCAB_DERIVEKEY_EN 0
+#define ATCAB_SIGN_EN 0

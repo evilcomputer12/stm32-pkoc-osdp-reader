@@ -1,0 +1,17 @@
+Pre-commit checks — 2026-10-31
+
+Source: scripts/test_host.sh (actual run)
+Order: upstream AsymCred, upstream OSDP-Embedded, reader tests
+
+100% tests passed out of 4
+100% tests passed out of 31
+100% tests passed out of 20
+PASS: SHA256, AES128, P256 compressed/invalid points, ECDSA +/- cases, ECDH, strict DER, X509 extraction/signature/pinned issuer/time
+PASS: independent OpenSSL verification of wolfCrypt signature
+
+Source: scripts/bootstrap.py (actual run)
+Exit: 0
+Existing bench key/header/controller settings unchanged: true
+RAM:   [=====     ]  51.4% (used 10524 bytes from 20480 bytes)
+Flash: [========= ]  91.9% (used 60236 bytes from 65536 bytes)
+c8_reader_hsu  SUCCESS   00:00:10.451

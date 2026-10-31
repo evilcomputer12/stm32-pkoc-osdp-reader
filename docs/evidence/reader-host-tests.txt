@@ -1,0 +1,45 @@
+Test project <project>/.build-host/reader
+      Start  1: entropy_pool
+ 1/20 Test  #1: entropy_pool .....................   Passed    0.32 sec
+      Start  2: pn532
+ 2/20 Test  #2: pn532 ............................   Passed    0.03 sec
+      Start  3: pn532_stm32_hal
+ 3/20 Test  #3: pn532_stm32_hal ..................   Passed    0.04 sec
+      Start  4: pn532_soft_i2c
+ 4/20 Test  #4: pn532_soft_i2c ...................   Passed    0.03 sec
+      Start  5: pn532_hsu
+ 5/20 Test  #5: pn532_hsu ........................   Passed    0.02 sec
+      Start  6: adafruit_reader
+ 6/20 Test  #6: adafruit_reader ..................   Passed    0.02 sec
+      Start  7: presentation_guard
+ 7/20 Test  #7: presentation_guard ...............   Passed    0.02 sec
+      Start  8: reader_feedback
+ 8/20 Test  #8: reader_feedback ..................   Passed    0.65 sec
+      Start  9: crypto
+ 9/20 Test  #9: crypto ...........................   Passed    1.23 sec
+      Start 10: test_sc_aes_wolfcrypt
+10/20 Test #10: test_sc_aes_wolfcrypt ............   Passed    0.03 sec
+      Start 11: test_sc_keys_wolfcrypt
+11/20 Test #11: test_sc_keys_wolfcrypt ...........   Passed    0.02 sec
+      Start 12: test_sc_cbc_wolfcrypt
+12/20 Test #12: test_sc_cbc_wolfcrypt ............   Passed    0.02 sec
+      Start 13: test_sc_mac_wolfcrypt
+13/20 Test #13: test_sc_mac_wolfcrypt ............   Passed    0.03 sec
+      Start 14: test_sc_payload_wolfcrypt
+14/20 Test #14: test_sc_payload_wolfcrypt ........   Passed    0.02 sec
+      Start 15: test_sc_wrap_wolfcrypt
+15/20 Test #15: test_sc_wrap_wolfcrypt ...........   Passed    0.02 sec
+      Start 16: test_pd_sc_wolfcrypt
+16/20 Test #16: test_pd_sc_wolfcrypt .............   Passed    0.03 sec
+      Start 17: test_acu_sc_wolfcrypt
+17/20 Test #17: test_acu_sc_wolfcrypt ............   Passed    0.03 sec
+      Start 18: test_loopback_sc_wolfcrypt
+18/20 Test #18: test_loopback_sc_wolfcrypt .......   Passed    0.03 sec
+      Start 19: test_capture_replay_wolfcrypt
+19/20 Test #19: test_capture_replay_wolfcrypt ....   Passed    0.03 sec
+      Start 20: test_port_wolfcrypt_wolfcrypt
+20/20 Test #20: test_port_wolfcrypt_wolfcrypt ....   Passed    0.03 sec
+
+100% tests passed out of 20
+
+Total Test time (real) =   2.67 sec

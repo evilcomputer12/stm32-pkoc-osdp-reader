@@ -1,0 +1,49 @@
+Sanitized bench log excerpts — 2026-10-31
+
+Raw files stay local. Card fingerprint and absolute workspace path are redacted.
+These are separate runs/builds; scope and chronology are in docs/verification.md.
+
+Source: c8-buzzer-enabled-build.log
+RAM:   [=====     ]  51.4% (used 10524 bytes from 20480 bytes)
+Flash: [========= ]  91.9% (used 60236 bytes from 65536 bytes)
+c8_reader_hsu  SUCCESS   00:00:09.831
+
+Source: c8-buzzer-enabled-upload.log
+** Programming Finished **
+** Verified OK **
+** Resetting Target **
+
+Source: c8-buzzer-secure-card.log
+LINK online=True secure=True
+CARD reader=0 bits=256 synthetic=False fingerprint=[redacted] secure=True
+FEEDBACK buzzer test starts in 5 seconds: two 300 ms beeps
+FEEDBACK Feedback LED_PC13=0 pin=1 buzzer_PB0=1 buzzer_pin=1 buzzer_enabled=1 LED_commands=0 BUZ_commands=1 read_beeps=1
+FEEDBACK Feedback LED_PC13=0 pin=1 buzzer_PB0=0 buzzer_pin=0 buzzer_enabled=1 LED_commands=0 BUZ_commands=1 read_beeps=1
+FEEDBACK Feedback LED_PC13=0 pin=1 buzzer_PB0=0 buzzer_pin=0 buzzer_enabled=1 LED_commands=0 BUZ_commands=2 read_beeps=1
+FEEDBACK PASS: secure buzzer pattern, timer expiry, explicit OFF and PB0 readback; audible result requires user observation
+RESULT online=True secure=True disconnects=0 events=1 synthetic_match=False card_events=1
+LINK online=False secure=False
+
+Source: c8-buzzer-reader-status.log
+PD secure-required address=0 baud=9600 online=1 secure=1 sizeof_pd=3236
+rx=4057 tx=4145 tx_errors=0 rx_errors=0 rx_edges=17606 max_gap_us=67093 uptime_ms=70761
+PN532 fw=32010607 ready=1 held=0 attempts=2 verified=2 failed=0 reported=1 latency_ms=270 error=0 transport=0 SW=9000 INS=80 step=5 ACK=1/6 UART=0
+PN532 polls=219 no_card=186 poll_errors=0 target=0 presence=1 stage=5 IO=0 reselect=1 pin_data=1 pin_clock_tx=1 bus=HSU B10-TX/B11-RX
+Feedback LED_PC13=0 pin=1 buzzer_PB0=0 buzzer_pin=0 buzzer_enabled=1 LED_commands=0 BUZ_commands=2 read_beeps=1
+
+Source: c8-buzzer-offline-status.log
+PD secure-required address=0 baud=9600 online=0 secure=1 sizeof_pd=3236
+rx=7282 tx=7370 tx_errors=0 rx_errors=0 rx_edges=31796 max_gap_us=67093 uptime_ms=148841
+PN532 fw=32010607 ready=1 held=1 attempts=5 verified=5 failed=0 reported=2 latency_ms=247 error=0 transport=0 SW=9000 INS=80 step=5 ACK=1/6 UART=0
+Feedback LED_PC13=0 pin=1 buzzer_PB0=0 buzzer_pin=0 buzzer_enabled=1 LED_commands=0 BUZ_commands=2 read_beeps=2
+
+Source: c8-adafruit-guard-reconnect-final.log
+LINK online=True secure=True
+CARD reader=0 bits=256 synthetic=False fingerprint=[redacted] secure=True
+RESULT online=True secure=True disconnects=0 events=1 synthetic_match=False card_events=1
+LINK online=False secure=False
+
+Source: c8-new-module-wrong-key.log
+WRONG_KEY secure=False cryptograms=10 tx_frames=10 rx_frames=10
+PASS: peer answered the handshake but wrong-key SC was not established
+LINK online=False secure=False

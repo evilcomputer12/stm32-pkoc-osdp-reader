@@ -1,0 +1,30 @@
+{
+  "elechouse-pn532": {
+    "url": "https://github.com/elechouse/PN532.git",
+    "commit": "8b05896a6616396392f0eac5af88a97c9733ebce"
+  },
+  "pn532": {
+    "url": "https://github.com/Seeed-Studio/PN532.git",
+    "commit": "e61296876c1c3e66ef67156562c71324b389f5fa"
+  },
+  "asymcred": {
+    "url": "https://github.com/Z-bit-Systems-LLC/AsymCred.git",
+    "commit": "ca675b8b033b6d9040e12adf9a94fc126e360907"
+  },
+  "osdp-embedded": {
+    "url": "https://github.com/Z-bit-Systems-LLC/OSDP-Embedded.git",
+    "commit": "9e496b4707765617d513d2fc7e4020716bf48313"
+  },
+  "osdp-net": {
+    "url": "https://github.com/Z-bit-Systems-LLC/OSDP.Net.git",
+    "commit": "960f26ed1b30127d26cb24b0b234e7b31e19a9e1"
+  },
+  "wolfssl": {
+    "url": "https://github.com/wolfSSL/wolfssl.git",
+    "commit": "3c5eead44904df64e6a5a1f4ebdce377d35a849a"
+  },
+  "cryptoauthlib": {
+    "url": "https://github.com/MicrochipTech/cryptoauthlib.git",
+    "commit": "d49c7d578efb09d4a498d5ab86839d4c17812f15"
+  }
+}

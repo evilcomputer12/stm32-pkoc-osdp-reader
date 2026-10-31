@@ -1,0 +1,26 @@
+STM32 Blue Pill PKOC / OSDP Reader
+Project integration: evilcomputer12, 2026
+
+Project-authored integration code, tests, scripts and documentation are
+licensed under GNU GPL version 3 or, at your option, any later version.
+The full GPL version 3 text is in LICENSE.
+
+Third-party components are not relicensed by this notice.
+
+Special thanks to Jonathan Horvath (https://github.com/bytedreamer) and
+Z-bit Systems, LLC (https://github.com/Z-bit-Systems-LLC).
+This project uses their AsymCred, OSDP-Embedded and OSDP.Net projects.
+Cred-Bench is acknowledged as related desktop tooling/reference.
+
+lib/PN532 contains modified files from Seeed Studio PN532, with original
+Adafruit and Seeed copyright notices and its BSD 3-Clause license retained
+in lib/PN532/LICENSE.md. Changes are described in docs/dependencies.md.
+
+Other dependencies are fetched at the revisions in dependencies.lock.json
+or the versions in platformio.ini. Their licenses remain in their sources;
+docs/dependencies.md identifies the relevant projects and license paths.
+This repository does not include downloaded dependency trees, compiled
+firmware, controller binaries, private bench keys or raw card captures.
+
+Acknowledgment does not imply endorsement, sponsorship, affiliation or
+certification by any upstream author or hardware vendor.

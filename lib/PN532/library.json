@@ -1,0 +1,14 @@
+{
+  "name": "Seeed-PN532-I2C-reviewed",
+  "version": "1.1.0",
+  "build": {
+    "srcFilter": [
+      "+<PN532.cpp>",
+      "+<PN532_I2C.cpp>",
+      "+<PN532_HSU.cpp>"
+    ]
+  },
+  "frameworks": [
+    "arduino"
+  ]
+}
